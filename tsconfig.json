@@ -1,0 +1,47 @@
+{
+  "schema": "https://json.schemastore.org/tsconfig.json",
+  "display": "Default",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": true,
+    "jsx": "preserve",
+    "target": "ESNext",
+    "module": "ESNext",
+    "incremental": true,
+    "skipLibCheck": true,
+    "paths": {
+      "#/*": ["./src/*"],
+      "~env": ["./env.ts"]
+    },
+    "noUnusedLocals": true,
+    "alwaysStrict": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "moduleResolution": "Bundler",
+    "useDefineForClassFields": true,
+    "allowArbitraryExtensions": true,
+    "noUncheckedIndexedAccess": true,
+    "useUnknownInCatchVariables": true,
+    "allowImportingTsExtensions": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "forceConsistentCasingInFileNames": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "types": ["node", "typed-query-selector/strict"],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx", ".next/types/**/*.ts"],
+  "files": ["environment.d.ts", "next.config.mjs", "env.ts"],
+  "exclude": ["node_modules", "./src/lib/generated", "_"]
+}
