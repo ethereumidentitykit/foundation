@@ -1,10 +1,11 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
+import BackToTop from '#/components/back-to-top'
 import Navigation from '#/components/navigation'
 import UserProfile from '#/components/user-profile'
 import UserProfileCard from '#/components/user-profile-card'
 import { FOUNDATION_ADDRESSES, FOUNDATION_ROLES, TEAM_ADDRESSES, TEAM_ROLES } from '#/lib/constants/team'
-import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Ethereum Identity Foundation',
@@ -184,6 +185,8 @@ const HomePage = () => {
           </div>
         </section>
       </main>
+
+      <BackToTop />
 
       <footer className='mt-20 w-full bg-[#333] py-20 text-white'>
         <div className='mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 md:grid-cols-4'>
