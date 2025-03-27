@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import ArrowUp from 'public/assets/icons/ui/arrow-up.svg'
-import { cn } from '#/lib/utilities'
 import Image from 'next/image'
+import React, { useEffect, useState } from 'react'
+import { cn } from '#/lib/utilities'
+import ArrowUp from 'public/assets/icons/ui/arrow-up.svg'
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -26,7 +26,7 @@ const BackToTop = () => {
   return (
     <div
       className={cn(
-        'fixed right-2 bottom-20 z-50 transition-all transition-discrete sm:right-4 sm:bottom-4',
+        'fixed right-2 bottom-2 z-50 transition-all transition-discrete sm:right-4 sm:bottom-4',
         isVisible ? 'block opacity-100 starting:opacity-0' : 'hidden opacity-0 starting:opacity-100'
       )}
     >
