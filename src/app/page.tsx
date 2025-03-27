@@ -29,10 +29,10 @@ const HomePage = () => {
     <div className='flex min-h-screen w-full flex-col items-center font-light text-gray-800'>
       <Navigation />
       <main className='w-full flex-grow'>
-        {/* Hero / Intro Section */}
+        {/* Home Section */}
         <section
           id='home'
-          className='flex min-h-[90vh] w-full flex-col items-center justify-center gap-12 px-4 py-16 pb-20 text-center sm:px-0 lg:py-20'
+          className='flex min-h-screen w-full flex-col items-center justify-center gap-12 px-4 py-28 pb-20 text-center sm:px-0 lg:py-28'
         >
           <h1 className='mb-4 text-3xl md:text-6xl'>Ethereum Identity Foundation</h1>
           <p className='mx-auto text-lg md:text-xl'>
@@ -41,7 +41,7 @@ const HomePage = () => {
         </section>
 
         {/* Projects Section */}
-        <section id='projects' className='w-full py-16 lg:py-20'>
+        <section id='projects' className='w-full py-20 lg:py-28'>
           <div className='flex w-full flex-col items-center gap-12 lg:gap-18'>
             <h2 className='text-5xl'>Projects</h2>
             <div className='grid w-full grid-cols-1 md:grid-cols-2'>
@@ -84,7 +84,7 @@ const HomePage = () => {
                 </p>
               </Link>
               <Link
-                href='https://ensworker.xyz'
+                href='https://github.com/ethereumidentitykit/ENS-Worker'
                 target='_blank'
                 className='group relative flex h-[60vw] w-full flex-col items-start justify-end gap-2 overflow-hidden bg-white p-4 sm:p-6 md:h-[30vw] lg:gap-4 lg:p-8'
               >
@@ -105,11 +105,10 @@ const HomePage = () => {
         </section>
 
         {/* Team Section */}
-        <section id='team' className='w-full px-4 py-16 md:px-0 lg:py-20'>
+        <section id='team' className='w-full px-4 py-20 md:px-0 lg:py-28'>
           <div className='flex w-full flex-col items-center gap-12 lg:gap-18'>
             <h2 className='text-5xl'>Team</h2>
             <div className='w-full gap-8 font-sans md:gap-0'>
-              {/* Team Member 1 */}
               {TEAM_ADDRESSES.map((address, index) => (
                 <div key={address} className='flex w-full flex-col items-center gap-8'>
                   <div className='flex w-full flex-col items-center gap-4 md:hidden'>
@@ -128,7 +127,7 @@ const HomePage = () => {
         </section>
 
         {/* Board Section */}
-        <section id='board' className='px-4 py-16 md:px-0 lg:py-20'>
+        <section id='board' className='px-4 py-20 md:px-0 lg:py-28'>
           <div className='flex w-full flex-col items-center gap-12 lg:gap-18'>
             <h2 className='text-5xl'>Board</h2>
             <div className='w-full gap-8 font-sans md:gap-0'>
@@ -149,29 +148,31 @@ const HomePage = () => {
           </div>
         </section>
 
-        <section id='supporters' className='px-4 py-16 sm:px-0 lg:py-20'>
-          <div className='flex w-full flex-col items-center gap-12 lg:gap-18'>
+        {/*  Supporter (Sponsors) Section */}
+        <section id='supporters' className='px-4 py-20 sm:px-0 lg:py-28'>
+          <div className='flex w-full flex-col items-center gap-20'>
             <h2 className='text-5xl'>Supporters</h2>
-            <div className='flex gap-20'>
+            <div className='flex flex-wrap items-center justify-center gap-20'>
               <Link
-                className='flex h-auto items-center justify-center pl-4 transition-transform hover:-rotate-12'
+                className='flex h-fit items-center justify-center transition-transform hover:-rotate-12'
                 href='https://ens.domains'
                 target='_blank'
               >
-                <Image src='/assets/ens-logo.svg' alt='0x' width={270} height={100} className='pl-4' />
+                <Image src='/assets/ens-dao-logo.svg' alt='0x' width={316} height={100} className='pl-4' />
               </Link>
               <Link
-                className='flex h-auto items-center justify-center transition-transform hover:rotate-12'
+                className='flex h-fit items-center justify-center transition-transform hover:rotate-12'
                 href='https://mask.io'
                 target='_blank'
               >
-                <Image src='/assets/mask-logo.svg' alt='0x' width={300} height={100} />
+                <Image src='/assets/mask-logo.png' alt='0x' width={280} height={100} className='h-fit' />
               </Link>
             </div>
           </div>
         </section>
 
-        <section id='contact' className='px-4 py-16 sm:px-0 lg:py-20'>
+        {/* Contact Section */}
+        <section id='contact' className='px-4 py-20 sm:px-0 lg:py-28'>
           <div className='flex w-full flex-col items-center gap-12 lg:gap-18'>
             <h2 className='text-5xl'>Contact</h2>
             <p className='flex items-center gap-2 text-lg'>
@@ -184,31 +185,33 @@ const HomePage = () => {
         </section>
       </main>
 
-      <footer className='mt-20 w-full bg-[#333] py-16 text-white'>
+      <footer className='mt-20 w-full bg-[#333] py-20 text-white'>
         <div className='mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 md:grid-cols-4'>
           <div className='flex items-start'>
-            <Image src='/assets/logo-full-light.svg' alt='Ethereum Identity Foundation' width={124} height={40} />
+            <Link href='#home'>
+              <Image src='/assets/logo-full-light.svg' alt='Ethereum Identity Foundation' width={124} height={40} />
+            </Link>
           </div>
 
           <div className='flex flex-col space-y-2'>
-            <a href='#' className='hover:underline'>
+            <Link href='#home' className='hover:underline'>
               Home
-            </a>
-            <a href='#projects' className='hover:underline'>
+            </Link>
+            <Link href='#projects' className='hover:underline'>
               Projects
-            </a>
-            <a href='#team' className='hover:underline'>
+            </Link>
+            <Link href='#team' className='hover:underline'>
               Team
-            </a>
-            <a href='#board' className='hover:underline'>
+            </Link>
+            <Link href='#board' className='hover:underline'>
               Board
-            </a>
-            <a href='#supporters' className='hover:underline'>
+            </Link>
+            <Link href='#supporters' className='hover:underline'>
               Supporters
-            </a>
-            <a href='#contact' className='hover:underline'>
+            </Link>
+            <Link href='#contact' className='hover:underline'>
               Contact
-            </a>
+            </Link>
           </div>
 
           <div className='flex flex-col space-y-2'>
@@ -217,6 +220,9 @@ const HomePage = () => {
             </Link>
             <Link href='https://efp.app' target='_blank' className='hover:underline'>
               Ethereum Follow Protocol
+            </Link>
+            <Link href='https://github.com/ethereumidentitykit/ENS-Worker' target='_blank' className='hover:underline'>
+              ENS Worker
             </Link>
           </div>
 

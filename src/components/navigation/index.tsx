@@ -1,45 +1,116 @@
 'use client'
 
+import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
+
+  useEffect(() => {
+    const sections = ['home', 'projects', 'team', 'board', 'supporters', 'contact']
+    const visibleSections = new Map()
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -20% 0px',
+      threshold: [0.1, 0.4],
+    }
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        visibleSections.set(entry.target.id, {
+          visible: entry.isIntersecting,
+          ratio: entry.intersectionRatio,
+        })
+
+        let maxRatio = 0
+        let currentSection = ''
+
+        visibleSections.forEach((data, section) => {
+          if (data.visible && data.ratio > maxRatio) {
+            maxRatio = data.ratio
+            currentSection = section
+          }
+        })
+
+        if (currentSection) {
+          setActiveSection(currentSection)
+        } else if ([...visibleSections.values()].every((data) => !data.visible)) {
+          setActiveSection('')
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+    sections.forEach((section) => {
+      const element = document.getElementById(section)
+      if (element) {
+        observer.observe(element)
+        visibleSections.set(section, { visible: false, ratio: 0 })
+      }
+    })
+
+    return () => {
+      sections.forEach((section) => {
+        const element = document.getElementById(section)
+        if (element) observer.unobserve(element)
+      })
+    }
+  }, [])
+
+  const NavLink = ({ href, section, children }: { href: string; section: string; children: React.ReactNode }) => {
+    const isActive = activeSection === section || (section === 'home' && activeSection === 'home')
+
+    return (
+      <a
+        href={href}
+        className={`hover:text-gray-600 ${isActive ? 'font-bold' : 'font-normal'}`}
+        onClick={section !== '' ? () => setMenuOpen(false) : undefined}
+      >
+        {children}
+      </a>
+    )
+  }
 
   return (
     <>
-      <header className='flex w-full items-center justify-end p-5 md:justify-center md:p-8'>
-        <Image
-          src='/assets/logo-full-dark.svg'
-          alt='Ethereum Identity Foundation'
-          width={130}
-          height={100}
-          className='absolute top-4 left-4'
-        />
+      <header className='fixed top-0 left-0 z-[9999] flex w-full items-center justify-end bg-white/50 p-5 backdrop-blur-md md:justify-center md:p-8'>
+        <Link href='#' className='absolute top-4 left-4 md:top-5'>
+          <Image
+            src='/assets/logo-full-dark.svg'
+            alt='Ethereum Identity Foundation'
+            width={140}
+            height={100}
+            className='h-auto w-[110px] md:w-[140px]'
+          />
+        </Link>
 
         {/* Desktop Nav */}
         <nav className='hidden space-x-6 md:flex'>
-          <a href='#' className='hover:text-gray-600'>
+          <NavLink href='#home' section='home'>
             Home
-          </a>
-          <a href='#projects' className='hover:text-gray-600'>
+          </NavLink>
+          <NavLink href='#projects' section='projects'>
             Projects
-          </a>
-          <a href='#team' className='hover:text-gray-600'>
+          </NavLink>
+          <NavLink href='#team' section='team'>
             Team
-          </a>
-          <a href='#board' className='hover:text-gray-600'>
+          </NavLink>
+          <NavLink href='#board' section='board'>
             Board
-          </a>
-          <a href='#supporters' className='hover:text-gray-600'>
+          </NavLink>
+          <NavLink href='#supporters' section='supporters'>
             Supporters
-          </a>
-          <a href='#contact' className='hover:text-gray-600'>
+          </NavLink>
+          <NavLink href='#contact' section='contact'>
             Contact
-          </a>
+          </NavLink>
         </nav>
 
-        {/* Hamburger Button (Mobile) */}
+        {/* Hamburger Button */}
         <button className='focus:outline-none md:hidden' onClick={() => setMenuOpen(true)} aria-label='Open menu'>
           <svg
             className='h-6 w-6'
@@ -55,9 +126,9 @@ const Navigation = () => {
         </button>
       </header>
 
-      {/* Fullscreen Mobile Menu */}
+      {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-full w-full transform bg-white transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full'} z-50 md:hidden`}
+        className={`fixed top-0 right-0 z-[9999] h-full w-full transform bg-white transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full'} z-50 md:hidden`}
       >
         <div className='flex items-center justify-between border-b p-4'>
           <span className='text-2xl font-light'>Menu</span>
@@ -76,24 +147,24 @@ const Navigation = () => {
           </button>
         </div>
         <nav className='mt-8 flex flex-col space-y-8 px-4 text-4xl font-light'>
-          <a href='#' className='hover:text-gray-600' onClick={() => setMenuOpen(false)}>
+          <NavLink href='#' section=''>
             Home
-          </a>
-          <a href='#projects' className='hover:text-gray-600' onClick={() => setMenuOpen(false)}>
+          </NavLink>
+          <NavLink href='#projects' section='projects'>
             Projects
-          </a>
-          <a href='#team' className='hover:text-gray-600' onClick={() => setMenuOpen(false)}>
+          </NavLink>
+          <NavLink href='#team' section='team'>
             Team
-          </a>
-          <a href='#board' className='hover:text-gray-600' onClick={() => setMenuOpen(false)}>
+          </NavLink>
+          <NavLink href='#board' section='board'>
             Board
-          </a>
-          <a href='#supporters' className='hover:text-gray-600' onClick={() => setMenuOpen(false)}>
+          </NavLink>
+          <NavLink href='#supporters' section='supporters'>
             Supporters
-          </a>
-          <a href='#contact' className='hover:text-gray-600' onClick={() => setMenuOpen(false)}>
+          </NavLink>
+          <NavLink href='#contact' section='contact'>
             Contact
-          </a>
+          </NavLink>
         </nav>
       </div>
     </>
