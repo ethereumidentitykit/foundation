@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ethereum Identity Foundation',
     siteName: 'Ethereum Identity Foundation',
-    description: 'Social graph for Ethereum',
+    description: 'Bringing identity onchain with the Ethereum identity stack.',
     url: 'https://efp.app',
     images: [
       {
