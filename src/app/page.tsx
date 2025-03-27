@@ -6,6 +6,7 @@ import Navigation from '#/components/navigation'
 import UserProfile from '#/components/user-profile'
 import UserProfileCard from '#/components/user-profile-card'
 import { FOUNDATION_ADDRESSES, FOUNDATION_ROLES, TEAM_ADDRESSES, TEAM_ROLES } from '#/lib/constants/team'
+import FooterLinks from '#/components/footer-links'
 
 export const metadata: Metadata = {
   title: 'Ethereum Identity Foundation',
@@ -36,9 +37,7 @@ const HomePage = () => {
           className='flex min-h-screen w-full flex-col items-center justify-center gap-12 px-4 py-28 pb-20 text-center sm:px-0 lg:py-28'
         >
           <h1 className='mb-4 text-3xl md:text-6xl'>Ethereum Identity Foundation</h1>
-          <p className='mx-auto text-lg md:text-xl'>
-            We&apos;re bringing identity onchain with the Ethereum identity stack.
-          </p>
+          <p className='mx-auto text-lg md:text-xl'>Bringing identity onchain with the Ethereum identity stack.</p>
         </section>
 
         {/* Projects Section */}
@@ -150,13 +149,13 @@ const HomePage = () => {
         </section>
 
         {/*  Supporter (Sponsors) Section */}
-        <section id='supporters' className='px-4 py-20 sm:px-0 lg:py-28'>
+        <section id='supporters' className='flex min-h-[80vh] items-center justify-center px-4 py-20 sm:px-0 lg:py-28'>
           <div className='flex w-full flex-col items-center gap-20'>
             <h2 className='text-5xl'>Supporters</h2>
             <div className='flex flex-wrap items-center justify-center gap-20'>
               <Link
                 className='flex h-fit items-center justify-center transition-transform hover:-rotate-12'
-                href='https://ens.domains'
+                href='https://ensdao.org/'
                 target='_blank'
               >
                 <Image src='/assets/ens-dao-logo.svg' alt='0x' width={316} height={100} className='pl-4' />
@@ -196,26 +195,7 @@ const HomePage = () => {
             </Link>
           </div>
 
-          <div className='flex flex-col space-y-2'>
-            <Link href='#home' className='hover:underline'>
-              Home
-            </Link>
-            <Link href='#projects' className='hover:underline'>
-              Projects
-            </Link>
-            <Link href='#team' className='hover:underline'>
-              Team
-            </Link>
-            <Link href='#board' className='hover:underline'>
-              Board
-            </Link>
-            <Link href='#supporters' className='hover:underline'>
-              Supporters
-            </Link>
-            <Link href='#contact' className='hover:underline'>
-              Contact
-            </Link>
-          </div>
+          <FooterLinks />
 
           <div className='flex flex-col space-y-2'>
             <Link href='https://ethidentitykit.com' target='_blank' className='hover:underline'>

@@ -65,13 +65,15 @@ const Navigation = () => {
     const isActive = activeSection === section || (section === 'home' && activeSection === 'home')
 
     return (
-      <a
-        href={href}
-        className={`hover:text-gray-600 ${isActive ? 'font-bold' : 'font-normal'}`}
-        onClick={section !== '' ? () => setMenuOpen(false) : undefined}
+      <div
+        className={`cursor-pointer hover:text-gray-600 ${isActive ? 'font-bold' : 'font-normal'}`}
+        onClick={() => {
+          document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          setMenuOpen(false)
+        }}
       >
         {children}
-      </a>
+      </div>
     )
   }
 
