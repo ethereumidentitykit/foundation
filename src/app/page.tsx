@@ -4,9 +4,9 @@ import type { Metadata } from 'next'
 import BackToTop from '#/components/back-to-top'
 import Navigation from '#/components/navigation'
 import UserProfile from '#/components/user-profile'
+import FooterLinks from '#/components/footer-links'
 import UserProfileCard from '#/components/user-profile-card'
 import { FOUNDATION_ADDRESSES, FOUNDATION_ROLES, TEAM_ADDRESSES, TEAM_ROLES } from '#/lib/constants/team'
-import FooterLinks from '#/components/footer-links'
 
 export const metadata: Metadata = {
   title: 'Ethereum Identity Foundation',
@@ -17,12 +17,12 @@ export const metadata: Metadata = {
     url: 'https://efp.app',
     images: [
       {
-        url: 'https://efp.app/assets/banners/home.png',
+        url: 'https://ethid.org/assets/og.png',
       },
     ],
   },
   twitter: {
-    images: 'https://efp.app/assets/banners/home.png',
+    images: 'https://ethid.org/assets/og.png',
   },
 }
 
