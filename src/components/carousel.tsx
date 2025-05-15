@@ -139,17 +139,24 @@ const Carousel = () => {
                 }}
               />
             </div>
-            <div className='flex w-full flex-col justify-center gap-2 bg-zinc-100 px-4 pt-4 pb-16 md:h-[200px] md:w-[700px] md:-translate-x-[360px] md:gap-4 md:py-6 md:pr-10 md:pl-[350px]'>
-              <p className='w-[300px] text-lg'>&quot;{item.quote}&quot;</p>
-              <a
-                href={item.url}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='hidden w-fit items-center gap-1 hover:underline md:flex'
-              >
-                <Image src='/assets/icons/ui/link-black.svg' alt='External Link' width={16} height={16} />
-                <p>Link</p>
-              </a>
+            <div className='flex w-[332px] flex-row justify-center gap-1 bg-zinc-100 px-4 pt-4 pb-16 md:h-[200px] md:w-[700px] md:-translate-x-[360px] md:flex-col md:gap-4 md:py-6 md:pr-10 md:pl-[350px]'>
+              <div className='flex items-center gap-2'>
+                <p className='w-full text-lg'>
+                  &quot;{item.quote}&quot;
+                  <a href={item.url} target='_blank' rel='noopener noreferrer' className='ml-2 inline-block md:hidden'>
+                    <Image src='/assets/icons/ui/link-black.svg' alt='External Link' width={16} height={16} />
+                  </a>
+                </p>
+                <a
+                  href={item.url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='hidden items-center hover:underline md:flex'
+                >
+                  <Image src='/assets/icons/ui/link-black.svg' alt='External Link' width={16} height={16} />
+                  <p>Link</p>
+                </a>
+              </div>
             </div>
           </div>
         ))}
