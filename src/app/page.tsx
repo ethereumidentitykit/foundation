@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
+import Carousel from '#/components/carousel'
 import BackToTop from '#/components/back-to-top'
 import Navigation from '#/components/navigation'
 import UserProfile from '#/components/user-profile'
@@ -104,6 +105,30 @@ const HomePage = () => {
           </div>
         </section>
 
+        {/*  Supporter (Sponsors) Section */}
+        <section id='supporters' className='flex min-h-[80vh] items-center justify-center px-4 py-20 sm:px-0 lg:py-28'>
+          <div className='flex w-full flex-col items-center gap-20'>
+            <h2 className='text-5xl'>Supporters</h2>
+            <Carousel />
+            <div className='flex flex-wrap items-center justify-center gap-20'>
+              <Link
+                className='flex h-fit items-center justify-center transition-transform hover:-rotate-12'
+                href='https://ensdao.org/'
+                target='_blank'
+              >
+                <Image src='/assets/ens-dao-logo.svg' alt='0x' width={316} height={100} className='pl-4' />
+              </Link>
+              <Link
+                className='flex h-fit items-center justify-center transition-transform hover:rotate-12'
+                href='https://mask.io'
+                target='_blank'
+              >
+                <Image src='/assets/mask-logo.png' alt='0x' width={280} height={100} className='h-fit' />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Team Section */}
         <section id='team' className='w-full px-4 py-20 md:px-0 lg:py-28'>
           <div className='flex w-full flex-col items-center gap-12 lg:gap-18'>
@@ -144,29 +169,6 @@ const HomePage = () => {
                   />
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/*  Supporter (Sponsors) Section */}
-        <section id='supporters' className='flex min-h-[80vh] items-center justify-center px-4 py-20 sm:px-0 lg:py-28'>
-          <div className='flex w-full flex-col items-center gap-20'>
-            <h2 className='text-5xl'>Supporters</h2>
-            <div className='flex flex-wrap items-center justify-center gap-20'>
-              <Link
-                className='flex h-fit items-center justify-center transition-transform hover:-rotate-12'
-                href='https://ensdao.org/'
-                target='_blank'
-              >
-                <Image src='/assets/ens-dao-logo.svg' alt='0x' width={316} height={100} className='pl-4' />
-              </Link>
-              <Link
-                className='flex h-fit items-center justify-center transition-transform hover:rotate-12'
-                href='https://mask.io'
-                target='_blank'
-              >
-                <Image src='/assets/mask-logo.png' alt='0x' width={280} height={100} className='h-fit' />
-              </Link>
             </div>
           </div>
         </section>

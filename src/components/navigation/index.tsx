@@ -98,14 +98,14 @@ const Navigation = () => {
           <NavLink href='#projects' section='projects'>
             Projects
           </NavLink>
+          <NavLink href='#supporters' section='supporters'>
+            Supporters
+          </NavLink>
           <NavLink href='#team' section='team'>
             Team
           </NavLink>
           <NavLink href='#board' section='board'>
             Board
-          </NavLink>
-          <NavLink href='#supporters' section='supporters'>
-            Supporters
           </NavLink>
           <NavLink href='#contact' section='contact'>
             Contact
@@ -155,14 +155,14 @@ const Navigation = () => {
           <NavLink href='#projects' section='projects'>
             Projects
           </NavLink>
+          <NavLink href='#supporters' section='supporters'>
+            Supporters
+          </NavLink>
           <NavLink href='#team' section='team'>
             Team
           </NavLink>
           <NavLink href='#board' section='board'>
             Board
-          </NavLink>
-          <NavLink href='#supporters' section='supporters'>
-            Supporters
           </NavLink>
           <NavLink href='#contact' section='contact'>
             Contact
