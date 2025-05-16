@@ -125,7 +125,7 @@ const Carousel = () => {
 
       {/* Carousel items */}
       <div
-        className='flex items-start gap-9 p-0 transition-transform duration-500 ease-in-out md:items-center md:pl-10'
+        className='flex items-start gap-9 p-0 transition-transform duration-500 ease-in-out md:items-center md:pl-3 lg:pl-10'
         style={{
           transform: getTransform(),
         }}
@@ -148,18 +148,18 @@ const Carousel = () => {
               />
             </div>
             <div className='flex w-[332px] flex-row justify-center gap-1 bg-zinc-100 px-4 pt-4 pb-16 md:h-[200px] md:w-[700px] md:-translate-x-[360px] md:flex-col md:gap-4 md:py-6 md:pr-10 md:pl-[350px]'>
-              <div className='flex w-[320px] items-center gap-2 md:flex-col md:items-start'>
-                <a
-                  href={item.url}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='min-w-full text-lg hover:underline'
-                >
+              <div className='flex w-[310px] items-center gap-2 md:flex-col md:items-start'>
+                <p className='min-w-full text-lg'>
                   &quot;{item.quote}&quot;
-                  <p className='ml-1 inline-block translate-y-1'>
+                  <a
+                    href={item.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='ml-1 inline-block translate-y-1 transition-transform hover:scale-110'
+                  >
                     <Image src='/assets/icons/ui/link-black.svg' alt='External Link' width={20} height={20} />
-                  </p>
-                </a>
+                  </a>
+                </p>
               </div>
             </div>
           </div>
