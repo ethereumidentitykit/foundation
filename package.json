@@ -26,7 +26,7 @@
     "@uidotdev/usehooks": "^2.4.1",
     "caniuse-lite": "^1.0.30001687",
     "clsx": "^2.1.0",
-    "ethereum-identity-kit": "^0.2.16",
+    "ethereum-identity-kit": "^0.2.42",
     "million": "^3.1.11",
     "next": "15.2.3",
     "next-themes": "^0.3.0",

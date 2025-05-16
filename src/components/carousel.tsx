@@ -74,28 +74,31 @@ const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const carouselRef = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
-    const checkMobile = () => {
+    if (!isClient) return setIsClient(true)
+
+    const onResize = () => {
       setIsMobile(window.innerWidth < 768)
     }
+    onResize()
 
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
+    window.addEventListener('resize', onResize)
 
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+    return () => window.removeEventListener('resize', onResize)
+  }, [isClient])
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % CarouselItems.length)
   }, [])
 
-  const { startInterval } = useCarouselInterval(handleNext, 7000)
+  const { startInterval, stopInterval } = useCarouselInterval(handleNext, 6000)
 
   // Calculate the transform to center the current item
   const getTransform = useCallback(() => {
     const itemWidth = isMobile ? 332 : 720
-    const gap = 36 // px, matches gap-9
+    const gap = 36
     const containerWidth = carouselRef.current?.clientWidth || (isMobile ? 360 : 1200)
     const offset = (containerWidth - itemWidth) / 2
     return `translateX(calc(-${currentIndex * (itemWidth + gap)}px + ${offset}px))`
@@ -104,20 +107,25 @@ const Carousel = () => {
   const handleDotClick = useCallback(
     (index: number) => {
       setCurrentIndex(index)
-      startInterval() // Reset the interval when a dot is clicked
+      stopInterval()
+
+      // Add delay before starting the interval
+      setTimeout(() => {
+        startInterval()
+      }, 2500)
     },
-    [startInterval]
+    [startInterval, stopInterval]
   )
 
   return (
     <div ref={carouselRef} className='relative mx-auto w-full max-w-[1200px] overflow-hidden'>
       {/* Fade effect */}
-      <div className='absolute top-0 left-0 z-10 h-full w-6 bg-gradient-to-r from-white to-transparent sm:w-32 md:w-64' />
-      <div className='absolute top-0 right-0 z-10 h-full w-6 bg-gradient-to-l from-white to-transparent sm:w-32 md:w-64' />
+      <div className='absolute top-0 left-0 z-10 h-full w-6 bg-gradient-to-r from-white to-transparent sm:w-32 md:w-36 lg:w-64' />
+      <div className='absolute top-0 right-0 z-10 h-full w-6 bg-gradient-to-l from-white to-transparent sm:w-32 md:w-36 lg:w-64' />
 
       {/* Carousel items */}
       <div
-        className='flex items-start gap-9 transition-transform duration-500 ease-in-out md:items-center'
+        className='flex items-start gap-9 p-0 transition-transform duration-500 ease-in-out md:items-center md:pl-10'
         style={{
           transform: getTransform(),
         }}
@@ -133,28 +141,24 @@ const Carousel = () => {
                 onProfileClick={() => {
                   window.open(`https://efp.app/${item.address}`, '_blank')
                 }}
-                className='z-50 flex w-full shadow-md'
+                className='z-50 flex shadow-md'
                 style={{
-                  paddingBottom: '12px',
+                  width: '330px',
                 }}
               />
             </div>
             <div className='flex w-[332px] flex-row justify-center gap-1 bg-zinc-100 px-4 pt-4 pb-16 md:h-[200px] md:w-[700px] md:-translate-x-[360px] md:flex-col md:gap-4 md:py-6 md:pr-10 md:pl-[350px]'>
-              <div className='flex w-[300px] items-center gap-2 md:flex-col md:items-start'>
-                <p className='min-w-full text-lg'>
-                  &quot;{item.quote}&quot;
-                  <a href={item.url} target='_blank' rel='noopener noreferrer' className='ml-2 inline-block md:hidden'>
-                    <Image src='/assets/icons/ui/link-black.svg' alt='External Link' width={16} height={16} />
-                  </a>
-                </p>
+              <div className='flex w-[320px] items-center gap-2 md:flex-col md:items-start'>
                 <a
                   href={item.url}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='hidden items-center gap-1 hover:underline md:flex'
+                  className='min-w-full text-lg hover:underline'
                 >
-                  <Image src='/assets/icons/ui/link-black.svg' alt='External Link' width={16} height={16} />
-                  <p>Link</p>
+                  &quot;{item.quote}&quot;
+                  <p className='ml-1 inline-block translate-y-1'>
+                    <Image src='/assets/icons/ui/link-black.svg' alt='External Link' width={20} height={20} />
+                  </p>
                 </a>
               </div>
             </div>

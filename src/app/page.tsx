@@ -6,7 +6,6 @@ import BackToTop from '#/components/back-to-top'
 import Navigation from '#/components/navigation'
 import UserProfile from '#/components/user-profile'
 import FooterLinks from '#/components/footer-links'
-import UserProfileCard from '#/components/user-profile-card'
 import { FOUNDATION_ADDRESSES, FOUNDATION_ROLES, TEAM_ADDRESSES, TEAM_ROLES } from '#/lib/constants/team'
 
 export const metadata: Metadata = {
@@ -133,19 +132,14 @@ const HomePage = () => {
         <section id='team' className='w-full px-4 py-20 md:px-0 lg:py-28'>
           <div className='flex w-full flex-col items-center gap-12 lg:gap-18'>
             <h2 className='text-5xl'>Team</h2>
-            <div className='w-full gap-8 font-sans md:gap-0'>
+            <div className='flex w-full flex-col gap-8 font-sans md:gap-0'>
               {TEAM_ADDRESSES.map((address, index) => (
-                <div key={address} className='flex w-full flex-col items-center gap-8'>
-                  <div className='flex w-full flex-col items-center gap-4 md:hidden'>
-                    <p className='font-roboto-serif text-2xl'>{TEAM_ROLES[index]}</p>
-                    <UserProfileCard className='z-50 flex w-full shadow-md' address={address as `0x${string}`} />
-                  </div>
-                  <UserProfile
-                    address={address as `0x${string}`}
-                    role={TEAM_ROLES[index]}
-                    className='hidden w-full md:block'
-                  />
-                </div>
+                <UserProfile
+                  key={`team-${address}`}
+                  address={address as `0x${string}`}
+                  role={TEAM_ROLES[index]}
+                  className='w-full md:shadow-none'
+                />
               ))}
             </div>
           </div>
@@ -155,19 +149,14 @@ const HomePage = () => {
         <section id='board' className='px-4 py-20 md:px-0 lg:py-28'>
           <div className='flex w-full flex-col items-center gap-12 lg:gap-18'>
             <h2 className='text-5xl'>Board</h2>
-            <div className='w-full gap-8 font-sans md:gap-0'>
+            <div className='flex w-full flex-col gap-8 font-sans md:gap-0'>
               {FOUNDATION_ADDRESSES.map((address, index) => (
-                <div key={address} className='flex w-full flex-col items-center gap-8'>
-                  <div className='flex w-full flex-col items-center gap-4 md:hidden'>
-                    <p className='font-roboto-serif text-2xl'>{FOUNDATION_ROLES[index]}</p>
-                    <UserProfileCard className='z-50 flex w-full shadow-md' address={address as `0x${string}`} />
-                  </div>
-                  <UserProfile
-                    address={address as `0x${string}`}
-                    role={FOUNDATION_ROLES[index]}
-                    className='hidden w-full md:block'
-                  />
-                </div>
+                <UserProfile
+                  key={`board-${address}`}
+                  address={address as `0x${string}`}
+                  role={FOUNDATION_ROLES[index]}
+                  className='w-full shadow-md md:shadow-none'
+                />
               ))}
             </div>
           </div>
