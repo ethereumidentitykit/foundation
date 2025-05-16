@@ -26,7 +26,7 @@ const BackToTop = () => {
   return (
     <div
       className={cn(
-        'fixed right-2 bottom-2 z-50 transition-all transition-discrete sm:right-4 sm:bottom-4',
+        'fixed right-2 bottom-2 z-[9999] transition-all transition-discrete sm:right-4 sm:bottom-4',
         isVisible ? 'block opacity-100 starting:opacity-0' : 'hidden opacity-0 starting:opacity-100'
       )}
     >
