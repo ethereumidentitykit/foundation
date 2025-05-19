@@ -79,7 +79,7 @@ const Navigation = () => {
 
   return (
     <>
-      <header className='fixed top-0 left-0 z-[9999] flex w-full items-center justify-end bg-white/50 p-5 backdrop-blur-md md:justify-center md:p-8'>
+      <header className='fixed top-0 left-0 z-[9999] flex w-full items-center justify-end bg-white/50 p-5 backdrop-blur-md md:p-8 lg:justify-center'>
         <Link href='#' className='absolute top-4 left-4 md:top-5'>
           <Image
             src='/assets/logo-full-dark.svg'
