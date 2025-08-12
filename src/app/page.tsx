@@ -84,20 +84,20 @@ const HomePage = () => {
                 </p>
               </Link>
               <Link
-                href='https://github.com/ethereumidentitykit/ENS-Worker'
+                href='https://github.com/signinwithethereum/siwe'
                 target='_blank'
-                className='group relative flex h-[60vw] w-full flex-col items-start justify-end gap-2 overflow-hidden bg-white p-4 sm:p-6 md:h-[30vw] lg:gap-4 lg:p-8'
+                className='group relative flex h-[60vw] w-full flex-col items-start justify-end gap-2 overflow-hidden bg-white p-4 text-white sm:p-6 md:h-[30vw] lg:gap-4 lg:p-8'
               >
                 <Image
-                  src='/assets/art/ens-worker-project.png'
-                  alt='ENS Worker'
+                  src='/assets/art/siwe-project.png'
+                  alt='SIWE'
                   width={2000}
                   height={1200}
                   className='absolute top-0 left-0 z-0 h-auto w-full object-cover transition-transform duration-300 group-hover:scale-110'
                 />
-                <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>ENS Worker</h3>
+                <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>Sign in with Ethereum</h3>
                 <p className='z-20 text-base font-light lg:text-lg'>
-                  High performance bulk lookups of ENS names and profile data for apps, easily spin up your own instance
+                  Sign in with Ethereum is a library for signing and verifying Ethereum messages.
                 </p>
               </Link>
             </div>

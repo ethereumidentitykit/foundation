@@ -149,7 +149,7 @@ const Navigation = () => {
           </button>
         </div>
         <nav className='mt-8 flex flex-col space-y-8 px-4 text-4xl font-light'>
-          <NavLink href='#' section=''>
+          <NavLink href='#home' section='home'>
             Home
           </NavLink>
           <NavLink href='#projects' section='projects'>

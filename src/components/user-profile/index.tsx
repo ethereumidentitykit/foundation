@@ -19,10 +19,10 @@ const UserProfile: React.FC<UserProfileCardProps> = ({ address, role, className 
       addressOrName={address}
       connectedAddress={userAddress}
       onProfileClick={(addressOrName: string) => {
-        window.open(`/${addressOrName}?ssr=false`)
+        window.open(`https://efp.app/${addressOrName}?ssr=false`)
       }}
       onStatClick={({ addressOrName, stat }: { addressOrName: string; stat: string }) => {
-        window.open(`/${addressOrName}?tab=${stat}`)
+        window.open(`https://efp.app/${addressOrName}?tab=${stat}`)
       }}
       role={role}
       options={{
