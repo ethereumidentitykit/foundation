@@ -96,9 +96,7 @@ const HomePage = () => {
                   className='absolute top-0 left-0 z-0 h-auto w-full object-cover transition-transform duration-300 group-hover:scale-110'
                 />
                 <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>Sign in with Ethereum</h3>
-                <p className='z-20 text-base font-light lg:text-lg'>
-                  Sign in with Ethereum is a library for signing and verifying Ethereum messages.
-                </p>
+                <p className='z-20 text-base font-light lg:text-lg'>Authentication with Ethereum accounts</p>
               </Link>
             </div>
           </div>
