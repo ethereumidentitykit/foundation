@@ -4,7 +4,6 @@ import '@rainbow-me/rainbowkit/styles.css'
 
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import Providers from './providers.tsx'
 import { Production } from './production.tsx'
@@ -27,7 +26,6 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <Providers>{children}</Providers>
         <Production>
           <Analytics />
-          <SpeedInsights />
         </Production>
       </body>
     </html>
