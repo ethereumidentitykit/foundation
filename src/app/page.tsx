@@ -99,7 +99,7 @@ const HomePage = () => {
                 <p className='z-20 text-base font-light lg:text-lg'>Authentication with Ethereum accounts</p>
               </Link>
               <Link
-                href='https://github.com/ethereumidentitykit/ens-market-bot'
+                href='https://x.com/ENSMarketBot'
                 target='_blank'
                 className='group relative flex h-[60vw] w-full flex-col items-start justify-end gap-2 overflow-hidden bg-white p-4 text-white sm:p-6 md:h-[30vw] lg:gap-4 lg:p-8'
               >
@@ -112,7 +112,7 @@ const HomePage = () => {
                 />
                 <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>ENS Market Bot</h3>
                 <p className='z-20 text-base font-light lg:text-lg'>
-                  Twitter bot that posts sales, offers, and other ENS activity.
+                  Twitter bot that posts ENS sales, offers, and registrations.
                 </p>
               </Link>
             </div>
