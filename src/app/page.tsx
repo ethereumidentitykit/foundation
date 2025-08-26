@@ -112,7 +112,7 @@ const HomePage = () => {
                 />
                 <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>ENS Market Bot</h3>
                 <p className='z-20 text-base font-light lg:text-lg'>
-                  Twitter bot that posts ENS sales, offers, and registrations.
+                  Twitter bot that tracks ENS sales, registrations, and offers.
                 </p>
               </Link>
             </div>
@@ -212,6 +212,9 @@ const HomePage = () => {
             </Link>
             <Link href='https://github.com/ethereumidentitykit/ENS-Worker' target='_blank' className='hover:underline'>
               ENS Worker
+            </Link>
+            <Link href='https://x.com/ENSMarketBot' target='_blank' className='hover:underline'>
+              ENS Market Bot
             </Link>
           </div>
 
