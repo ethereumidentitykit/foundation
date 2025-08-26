@@ -9,12 +9,12 @@ import FooterLinks from '#/components/footer-links'
 import { FOUNDATION_ADDRESSES, FOUNDATION_ROLES, TEAM_ADDRESSES, TEAM_ROLES } from '#/lib/constants/team'
 
 export const metadata: Metadata = {
-  title: 'Ethereum Identity Foundation',
+  title: 'EthID',
   openGraph: {
-    title: 'Ethereum Identity Foundation',
-    siteName: 'Ethereum Identity Foundation',
+    title: 'EthID',
+    siteName: 'EthID',
     description: 'Bringing identity onchain with the Ethereum identity stack.',
-    url: 'https://efp.app',
+    url: 'https://ethid.org',
     images: [
       {
         url: 'https://ethid.org/assets/og.png',
