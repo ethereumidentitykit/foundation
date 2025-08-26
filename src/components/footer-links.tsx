@@ -4,7 +4,7 @@ import React from 'react'
 
 const FooterLinks = () => {
   return (
-    <div className='flex flex-col space-y-2'>
+    <div className='flex flex-col items-center space-y-2 md:items-start'>
       <div
         onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
         className='hover:underline'

@@ -36,7 +36,8 @@ const HomePage = () => {
           id='home'
           className='flex min-h-screen w-full flex-col items-center justify-center gap-12 px-4 py-28 pb-20 text-center sm:px-0 lg:py-28'
         >
-          <h1 className='mb-4 text-3xl md:text-6xl'>Ethereum Identity Foundation</h1>
+          <h1 className='pointer-events-none hidden text-3xl md:text-6xl'>EthID</h1>
+          <Image src='/assets/ethid.svg' alt='EthID' width={124} height={40} className='h-auto w-60 md:w-80' />
           <p className='mx-auto text-lg md:text-xl'>Bringing identity onchain with the Ethereum identity stack.</p>
         </section>
 
@@ -84,7 +85,7 @@ const HomePage = () => {
                 </p>
               </Link>
               <Link
-                href='https://github.com/signinwithethereum/siwe'
+                href='https://siwe.xyz'
                 target='_blank'
                 className='group relative flex h-[60vw] w-full flex-col items-start justify-end gap-2 overflow-hidden bg-white p-4 text-white sm:p-6 md:h-[30vw] lg:gap-4 lg:p-8'
               >
@@ -193,32 +194,32 @@ const HomePage = () => {
 
       <BackToTop />
 
-      <footer className='mt-20 w-full bg-[#333] py-20 text-white'>
+      <footer className='mt-20 w-full bg-[#333] py-10 text-white md:py-20'>
         <div className='mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 md:grid-cols-4'>
-          <div className='flex items-start'>
+          <div className='flex items-center justify-center md:items-start'>
             <Link href='#home'>
-              <Image src='/assets/logo-full-light.svg' alt='Ethereum Identity Foundation' width={124} height={40} />
+              <Image src='/assets/ethid-light.svg' alt='EthID' width={124} height={40} />
             </Link>
           </div>
 
           <FooterLinks />
 
-          <div className='flex flex-col space-y-2'>
+          <div className='flex flex-col items-center space-y-2 md:items-start'>
             <Link href='https://ethidentitykit.com' target='_blank' className='hover:underline'>
               Ethereum Identity Kit
             </Link>
             <Link href='https://efp.app' target='_blank' className='hover:underline'>
               Ethereum Follow Protocol
             </Link>
-            <Link href='https://github.com/ethereumidentitykit/ENS-Worker' target='_blank' className='hover:underline'>
-              ENS Worker
+            <Link href='https://siwe.xyz' target='_blank' className='hover:underline'>
+              Sign in with Ethereum
             </Link>
             <Link href='https://x.com/ENSMarketBot' target='_blank' className='hover:underline'>
               ENS Market Bot
             </Link>
           </div>
 
-          <div className='flex items-start space-x-2'>
+          <div className='flex w-full items-center justify-center space-x-2 md:items-start md:justify-start'>
             <Image src='/assets/icons/ui/mail.svg' alt='Email' width={24} height={24} className='invert' />
             <a href='mailto:contact@ethid.org' className='hover:underline'>
               contact@ethid.org

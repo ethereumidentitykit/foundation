@@ -61,6 +61,16 @@ const Navigation = () => {
     }
   }, [])
 
+  const [isLogoVisible, setIsLogoVisible] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsLogoVisible(window.scrollY > 500)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const NavLink = ({ href, section, children }: { href: string; section: string; children: React.ReactNode }) => {
     const isActive = activeSection === section || (section === 'home' && activeSection === 'home')
 
@@ -80,13 +90,16 @@ const Navigation = () => {
   return (
     <>
       <header className='fixed top-0 left-0 z-[9999] flex w-full items-center justify-end bg-white/50 p-5 backdrop-blur-md md:p-8 lg:justify-center'>
-        <Link href='#' className='absolute top-4 left-4 md:top-5'>
+        <Link
+          href='#'
+          className={`absolute top-4 left-4 md:top-5 ${isLogoVisible ? 'translate-y-0' : '-translate-y-20'} transition-transform duration-300`}
+        >
           <Image
-            src='/assets/logo-full-dark.svg'
-            alt='Ethereum Identity Foundation'
+            src='/assets/ethid.svg'
+            alt='EthID'
             width={140}
             height={100}
-            className='h-auto w-[110px] md:w-[140px]'
+            className='h-auto w-[86px] md:w-[110px]'
           />
         </Link>
 
