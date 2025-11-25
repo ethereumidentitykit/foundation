@@ -106,7 +106,7 @@ const HomePage = () => {
               >
                 <Image
                   src='/assets/art/grails-market.png'
-                  alt='SIWE'
+                  alt='grails market'
                   width={2000}
                   height={1200}
                   className='absolute top-0 left-0 z-0 h-auto w-full object-cover transition-transform duration-300 group-hover:scale-110'
