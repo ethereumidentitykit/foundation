@@ -100,6 +100,23 @@ const HomePage = () => {
                 <p className='z-20 text-base font-light lg:text-lg'>Authentication with Ethereum accounts</p>
               </Link>
               <Link
+                href='https://grails.app'
+                target='_blank'
+                className='group relative flex h-[60vw] w-full flex-col items-start justify-end gap-2 overflow-hidden bg-white p-4 text-white sm:p-6 md:h-[30vw] lg:gap-4 lg:p-8'
+              >
+                <Image
+                  src='/assets/art/grails-market.png'
+                  alt='SIWE'
+                  width={2000}
+                  height={1200}
+                  className='absolute top-0 left-0 z-0 h-auto w-full object-cover transition-transform duration-300 group-hover:scale-110'
+                />
+                <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>Grails Market</h3>
+                <p className='z-20 text-base font-light lg:text-lg'>
+                  Secondary market for ENS (Ethereum Name Service) names.
+                </p>
+              </Link>
+              <Link
                 href='https://x.com/ENSMarketBot'
                 target='_blank'
                 className='group relative flex h-[60vw] w-full flex-col items-start justify-end gap-2 overflow-hidden bg-white p-4 text-white sm:p-6 md:h-[30vw] lg:gap-4 lg:p-8'
