@@ -111,9 +111,9 @@ const HomePage = () => {
                   height={1200}
                   className='absolute top-0 left-0 z-0 h-auto w-full object-cover transition-transform duration-300 group-hover:scale-110'
                 />
-                <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>Grails Market</h3>
+                <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>Grails</h3>
                 <p className='z-20 text-base font-light lg:text-lg'>
-                  Secondary market for ENS (Ethereum Name Service) names.
+                  Market and manager for ENS names.
                 </p>
               </Link>
               <Link
