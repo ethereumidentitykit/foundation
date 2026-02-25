@@ -24,9 +24,9 @@ const UserProfile: React.FC<UserProfileCardProps> = ({ address, role, className 
       onStatClick={({ addressOrName, stat }: { addressOrName: string; stat: string }) => {
         window.open(`https://efp.app/${addressOrName}?tab=${stat}`)
       }}
-      role={role}
-      options={{
-        followButton: <FollowButton address={address} />,
+      extraOptions={{
+        customFollowButton: <FollowButton address={address} />,
+        role,
       }}
       showPoaps={false}
     />
