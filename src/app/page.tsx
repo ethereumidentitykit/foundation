@@ -62,7 +62,7 @@ const HomePage = () => {
                   Ethereum Identity Kit
                 </h3>
                 <p className='z-20 text-base font-light text-white lg:text-lg'>
-                  Component library to easily integrate ENS, EFP, and other elements of the Ethereum identity stack.
+                  Component library to easily integrate ENS, EFP, & SIWE.
                 </p>
               </Link>
               <Link
@@ -112,7 +112,7 @@ const HomePage = () => {
                   className='absolute top-0 left-0 z-0 h-auto w-full object-cover transition-transform duration-300 group-hover:scale-110'
                 />
                 <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>Grails</h3>
-                <p className='z-20 text-base font-light lg:text-lg'>Market and manager for ENS names.</p>
+                <p className='z-20 text-base font-light lg:text-lg'>The best manager & market for ENS names.</p>
               </Link>
               <Link
                 href='https://x.com/ENSMarketBot'
@@ -138,14 +138,14 @@ const HomePage = () => {
               >
                 <Image
                   src='/assets/art/eth-leaderboard-project.png'
-                  alt='Eth Leaderboard'
+                  alt='EthLeaderboard'
                   width={2000}
                   height={1200}
                   className='absolute top-0 left-0 z-0 h-auto w-full object-cover transition-transform duration-300 group-hover:scale-110'
                 />
-                <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>Eth Leaderboard</h3>
+                <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>.eth Leaderboard</h3>
                 <p className='z-20 text-base font-light lg:text-lg'>
-                  Leaderboard of the most followed X accounts with .eth names.
+                  The most followed X accounts with .eth names.
                 </p>
               </Link>
             </div>
