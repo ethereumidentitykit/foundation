@@ -112,9 +112,7 @@ const HomePage = () => {
                   className='absolute top-0 left-0 z-0 h-auto w-full object-cover transition-transform duration-300 group-hover:scale-110'
                 />
                 <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>Grails</h3>
-                <p className='z-20 text-base font-light lg:text-lg'>
-                  Market and manager for ENS names.
-                </p>
+                <p className='z-20 text-base font-light lg:text-lg'>Market and manager for ENS names.</p>
               </Link>
               <Link
                 href='https://x.com/ENSMarketBot'
@@ -131,6 +129,23 @@ const HomePage = () => {
                 <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>ENS Market Bot</h3>
                 <p className='z-20 text-base font-light lg:text-lg'>
                   Twitter bot that tracks ENS sales, registrations, and offers.
+                </p>
+              </Link>
+              <Link
+                href='https://ethleaderboard.com'
+                target='_blank'
+                className='group relative flex h-[60vw] w-full flex-col items-start justify-end gap-2 overflow-hidden bg-white p-4 text-white sm:p-6 md:h-[30vw] lg:gap-4 lg:p-8'
+              >
+                <Image
+                  src='/assets/art/eth-leaderboard-project.png'
+                  alt='Eth Leaderboard'
+                  width={2000}
+                  height={1200}
+                  className='absolute top-0 left-0 z-0 h-auto w-full object-cover transition-transform duration-300 group-hover:scale-110'
+                />
+                <h3 className='z-20 text-2xl group-hover:underline lg:text-3xl xl:text-4xl'>Eth Leaderboard</h3>
+                <p className='z-20 text-base font-light lg:text-lg'>
+                  Leaderboard of the most followed X accounts with .eth names.
                 </p>
               </Link>
             </div>

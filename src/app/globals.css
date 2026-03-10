@@ -253,3 +253,8 @@ input {
 .user-profile-card-container {
   box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.1);
 }
+
+.socials-container {
+  flex-wrap: wrap;
+  justify-content: flex-start !important;
+}

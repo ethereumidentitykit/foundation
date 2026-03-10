@@ -145,6 +145,9 @@ const Carousel = () => {
                 style={{
                   width: '330px',
                 }}
+                extraOptions={{
+                  hideSocials: ['vision', 'opensea'],
+                }}
               />
             </div>
             <div className='flex w-[332px] flex-row justify-center gap-1 bg-zinc-100 px-4 pt-4 pb-16 md:h-[200px] md:w-[700px] md:-translate-x-[360px] md:flex-col md:gap-4 md:py-6 md:pr-10 md:pl-[350px]'>
