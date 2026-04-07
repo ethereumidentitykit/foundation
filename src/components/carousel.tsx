@@ -1,17 +1,20 @@
 'use client'
 
 import Image from 'next/image'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useWindowSize } from 'ethereum-identity-kit'
 import type { Address } from 'viem'
-import { ProfileCard } from 'ethereum-identity-kit'
-import { useEffect, useState, useRef, useCallback } from 'react'
 
-interface CarouselItem {
+import User from '#/components/ui/user'
+import { cn } from '#/lib/utilities'
+
+interface Testimonial {
   quote: string
   url: string
   address: Address
 }
 
-const CarouselItems: CarouselItem[] = [
+const TESTIMONIALS: Testimonial[] = [
   {
     quote: '[T]he EFP guys have delivered and keep delivering... They have made owning an ENS name more fun...',
     url: 'https://discuss.ens.domains/t/voting-report-lefteris-eth/20770',
@@ -44,142 +47,116 @@ const CarouselItems: CarouselItem[] = [
   },
 ]
 
-const useCarouselInterval = (callback: () => void, delay: number) => {
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+const AUTO_ROTATE_MS = 8500
 
-  const startInterval = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-    intervalRef.current = setInterval(callback, delay)
-  }, [callback, delay])
-
-  const stopInterval = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
-  }, [])
-
-  useEffect(() => {
-    startInterval()
-    return () => {
-      stopInterval()
-    }
-  }, [startInterval, stopInterval, callback, delay])
-
-  return { startInterval, stopInterval }
+const getVisibleCount = (width: number | null): number => {
+  if (!width || width < 768) return 1
+  if (width < 1024) return 2
+  return 3
 }
 
 const Carousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const carouselRef = useRef<HTMLDivElement>(null)
-  const [isMobile, setIsMobile] = useState(false)
-  const [isClient, setIsClient] = useState(false)
+  const { width } = useWindowSize()
+  const visibleCount = getVisibleCount(width)
+  const total = TESTIMONIALS.length
+  const needsCarousel = total > visibleCount
+  const maxIndex = needsCarousel ? total - visibleCount : 0
+
+  const [activeIndex, setActiveIndex] = useState(0)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  // Clamp index when the visible count changes (e.g. on resize).
+  useEffect(() => {
+    setActiveIndex((prev) => Math.min(prev, maxIndex))
+  }, [maxIndex])
+
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current)
+    if (!needsCarousel) return
+
+    timerRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+    }, AUTO_ROTATE_MS)
+  }, [needsCarousel, maxIndex])
 
   useEffect(() => {
-    if (!isClient) return setIsClient(true)
-
-    const onResize = () => {
-      setIsMobile(window.innerWidth < 768)
+    resetTimer()
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current)
     }
-    onResize()
+  }, [resetTimer])
 
-    window.addEventListener('resize', onResize)
-
-    return () => window.removeEventListener('resize', onResize)
-  }, [isClient])
-
-  const handleNext = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % CarouselItems.length)
-  }, [])
-
-  const { startInterval, stopInterval } = useCarouselInterval(handleNext, 6000)
-
-  // Calculate the transform to center the current item
-  const getTransform = useCallback(() => {
-    const itemWidth = isMobile ? 332 : 720
-    const gap = 36
-    const containerWidth = carouselRef.current?.clientWidth || (isMobile ? 360 : 1200)
-    const offset = (containerWidth - itemWidth) / 2
-    return `translateX(calc(-${currentIndex * (itemWidth + gap)}px + ${offset}px))`
-  }, [currentIndex, isMobile])
-
-  const handleDotClick = useCallback(
+  const goTo = useCallback(
     (index: number) => {
-      setCurrentIndex(index)
-      stopInterval()
-
-      // Add delay before starting the interval
-      setTimeout(() => {
-        startInterval()
-      }, 2500)
+      setActiveIndex(index)
+      resetTimer()
     },
-    [startInterval, stopInterval]
+    [resetTimer]
   )
 
-  return (
-    <div ref={carouselRef} className='relative mx-auto w-full max-w-[1200px] overflow-hidden'>
-      {/* Fade effect */}
-      <div className='absolute top-0 left-0 z-10 h-full w-6 bg-gradient-to-r from-white to-transparent sm:w-32 md:w-36 lg:w-64' />
-      <div className='absolute top-0 right-0 z-10 h-full w-6 bg-gradient-to-l from-white to-transparent sm:w-32 md:w-36 lg:w-64' />
+  const translateX = -(activeIndex * (100 / visibleCount))
 
-      {/* Carousel items */}
-      <div
-        className='flex items-start gap-9 p-0 transition-transform duration-500 ease-in-out md:items-center md:pl-3 lg:pl-10'
-        style={{
-          transform: getTransform(),
-        }}
-      >
-        {CarouselItems.map((item, index) => (
-          <div
-            key={index}
-            className={`flex flex-col-reverse items-center md:w-full md:max-w-[720px] md:flex-row md:gap-8`}
-          >
-            <div className='z-10 -translate-y-12 md:w-1/2 md:translate-y-0'>
-              <ProfileCard
-                addressOrName={item.address}
-                onProfileClick={() => {
-                  window.open(`https://efp.app/${item.address}`, '_blank')
-                }}
-                className='z-50 flex shadow-md'
-                style={{
-                  width: '330px',
-                }}
-                extraOptions={{
-                  hideSocials: ['vision', 'opensea'],
-                }}
-              />
-            </div>
-            <div className='flex w-[332px] flex-row justify-center gap-1 bg-zinc-100 px-4 pt-4 pb-16 md:h-[200px] md:w-[700px] md:-translate-x-[360px] md:flex-col md:gap-4 md:py-6 md:pr-10 md:pl-[350px]'>
-              <div className='flex w-[310px] items-center gap-2 md:flex-col md:items-start'>
-                <p className='min-w-full text-lg'>
-                  &quot;{item.quote}&quot;
-                  <a
-                    href={item.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='ml-1 inline-block translate-y-1 transition-transform hover:scale-110'
-                  >
-                    <Image src='/assets/icons/ui/link-black.svg' alt='External Link' width={20} height={20} />
-                  </a>
-                </p>
+  return (
+    <div className='flex w-full max-w-[1232px] flex-col items-center justify-center gap-6 sm:px-4 md:gap-8'>
+      <div className='w-full'>
+        <div
+          className='flex min-w-full items-stretch transition-transform duration-500 ease-in-out'
+          style={{ transform: `translateX(${translateX}%)` }}
+        >
+          {TESTIMONIALS.map((testimonial, i) => (
+            <div
+              key={testimonial.address}
+              className='shrink-0 px-2 transition-all duration-400'
+              style={{
+                width: `${100 / visibleCount}%`,
+                maxWidth: '100%',
+                opacity: i > activeIndex + 2 || i < activeIndex ? 0 : 1,
+              }}
+            >
+              <div className='flex h-full w-full flex-col justify-between gap-4 rounded-lg bg-zinc-100 pt-5'>
+                <div className='flex flex-col gap-4 px-5'>
+                  <div className='flex items-start justify-between gap-3'>
+                    <Image src='/assets/icons/ui/quotes.svg' alt='' width={24} height={24} aria-hidden='true' />
+                    <a
+                      href={testimonial.url}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='shrink-0 transition-transform hover:scale-110'
+                      aria-label='View source'
+                    >
+                      <Image src='/assets/icons/ui/link-black.svg' alt='' width={20} height={20} aria-hidden='true' />
+                    </a>
+                  </div>
+                  <p className='text-lg text-wrap'>{testimonial.quote}</p>
+                </div>
+                <User
+                  address={testimonial.address}
+                  className='h-16 w-full max-w-full gap-2 rounded-b-lg px-5'
+                  wrapperClassName='max-w-full'
+                  avatarSize='40px'
+                  fontSize='18px'
+                />
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* Dots navigation */}
-      <div className='mt-2 flex justify-center gap-2 sm:mt-6 md:mt-8'>
-        {CarouselItems.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleDotClick(index)}
-            className={`h-3 w-3 rounded-full transition-colors ${index === currentIndex ? 'bg-black' : 'bg-gray-300 hover:bg-gray-400'}`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      {needsCarousel && (
+        <div className='flex items-center justify-center gap-2'>
+          {Array.from({ length: maxIndex + 1 }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={cn(
+                'h-2.5 rounded-full transition-all duration-300',
+                activeIndex === i ? 'w-6 bg-gray-700' : 'bg-tertiary w-2.5 hover:bg-gray-700/50'
+              )}
+              aria-label={`Go to testimonial ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
