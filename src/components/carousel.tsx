@@ -94,11 +94,21 @@ const Carousel = () => {
     [resetTimer]
   )
 
+  const goPrev = useCallback(() => {
+    setActiveIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))
+    resetTimer()
+  }, [maxIndex, resetTimer])
+
+  const goNext = useCallback(() => {
+    setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+    resetTimer()
+  }, [maxIndex, resetTimer])
+
   const translateX = -(activeIndex * (100 / visibleCount))
 
   return (
     <div className='flex w-full max-w-[1232px] flex-col items-center justify-center gap-6 sm:px-4 md:gap-8'>
-      <div className='w-full'>
+      <div className='relative w-full'>
         <div
           className='flex min-w-full items-stretch transition-transform duration-500 ease-in-out'
           style={{ transform: `translateX(${translateX}%)` }}
@@ -140,6 +150,41 @@ const Carousel = () => {
             </div>
           ))}
         </div>
+
+        {needsCarousel && (
+          <>
+            <button
+              type='button'
+              onClick={goPrev}
+              aria-label='Previous testimonial'
+              className='bg-neutral hover:bg-nav-item text-text shadow-medium absolute top-1/2 -left-2.5 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full transition-all sm:-left-3 sm:h-10 sm:w-10 lg:-left-3 lg:h-12 lg:w-12 xl:-left-[min(calc(100vw-1286px),3rem)]'
+            >
+              <Image
+                src='/assets/icons/ui/arrow-up.svg'
+                alt=''
+                width={18}
+                height={18}
+                aria-hidden='true'
+                className='-rotate-90'
+              />
+            </button>
+            <button
+              type='button'
+              onClick={goNext}
+              aria-label='Next testimonial'
+              className='bg-neutral hover:bg-nav-item text-text shadow-medium absolute top-1/2 -right-2.5 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full transition-all sm:-right-3 sm:h-10 sm:w-10 lg:-right-3 lg:h-12 lg:w-12 xl:-right-[min(calc(100vw-1286px),3rem)]'
+            >
+              <Image
+                src='/assets/icons/ui/arrow-up.svg'
+                alt=''
+                width={18}
+                height={18}
+                aria-hidden='true'
+                className='rotate-90'
+              />
+            </button>
+          </>
+        )}
       </div>
 
       {needsCarousel && (
