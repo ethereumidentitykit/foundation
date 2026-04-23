@@ -157,7 +157,7 @@ const Carousel = () => {
               type='button'
               onClick={goPrev}
               aria-label='Previous testimonial'
-              className='bg-neutral hover:bg-nav-item text-text shadow-medium absolute top-1/2 -left-2.5 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full transition-all sm:-left-8 sm:h-10 sm:w-10 lg:-left-7 lg:h-12 lg:w-12 xl:-left-[min(calc(100vw-1286px),3rem)]'
+              className='bg-neutral hover:bg-nav-item text-text shadow-medium absolute top-1/2 left-0 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full transition-all sm:-left-3 sm:h-10 sm:w-10 lg:-left-3 lg:h-12 lg:w-12 xl:-left-[min(calc(100vw-1286px),3rem)]'
             >
               <Image
                 src='/assets/icons/ui/arrow-up.svg'
@@ -172,7 +172,7 @@ const Carousel = () => {
               type='button'
               onClick={goNext}
               aria-label='Next testimonial'
-              className='bg-neutral hover:bg-nav-item text-text shadow-medium absolute top-1/2 -right-2.5 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full transition-all sm:-right-8 sm:h-10 sm:w-10 lg:-right-7 lg:h-12 lg:w-12 xl:-right-[min(calc(100vw-1286px),3rem)]'
+              className='bg-neutral hover:bg-nav-item text-text shadow-medium absolute top-1/2 right-0 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full transition-all sm:-right-3 sm:h-10 sm:w-10 lg:-right-3 lg:h-12 lg:w-12 xl:-right-[min(calc(100vw-1286px),3rem)]'
             >
               <Image
                 src='/assets/icons/ui/arrow-up.svg'
